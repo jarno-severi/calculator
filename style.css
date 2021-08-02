@@ -17,7 +17,11 @@ body {
     border-radius: 6px;
 }
 
-.display {
+.off {
+    color: whitesmoke;
+}
+
+#display {
     display: flex;
     box-sizing: border-box;
     width: 392px;
@@ -25,7 +29,7 @@ body {
     background: whitesmoke;
     border-radius: 6px;
     height: 100px;
-    padding: 8px;
+    padding: 8px 22px 8px 8px;
     justify-content: end;
     align-items: center;
     font-size: 3em;
@@ -52,5 +56,8 @@ button {
     font-family: monospace;
 }
 
-#sum {
+#power {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
