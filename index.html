@@ -14,30 +14,79 @@
 <body>
 
     <div class="calculator">
-        <div id="display" class="">0</div>
-        <div class="buttons">
-            <div class="button"><button id="power"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"/></svg></button></div>
-            <div class="button"><button disabled></button></div>
-            <div class="button"><button disabled></button></div>
-            <div class="button"><button class="operator" id="divide">%</button></div>
-            <div class="button"><button class="number">7</button></div>
-            <div class="button"><button class="number">8</button></div>
-            <div class="button"><button class="number">9</button></div>
-            <div class="button"><button class="operator" id="multiply">x</button></div>
-            <div class="button"><button class="number">4</button></div>
-            <div class="button"><button class="number">5</button></div>
-            <div class="button"><button class="number">6</button></div>
-            <div class="button"><button class="operator" id="subtract">-</button></div>
-            <div class="button"><button class="number">1</button></div>
-            <div class="button"><button class="number">2</button></div>
-            <div class="button"><button class="number">3</button></div>
-            <div class="button"><button class="operator" id="add">+</button></div>
-            <div class="button"><button id="clear">C</button></div>
-            <div class="button"><button class="number">0</button></div>
-            <div class="button"><button id="dot">.</button></div>
-            <div class="button"><button class="operator" id="sum">=</button></div>
+        <div class="display-box">
+            <div id="history"></div>
+            <div id="display" class="">0</div>
         </div>
-
+        <div class="buttons">
+            <div class="button">
+                <button id="power">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                        fill="#000000">
+                        <path d="M0 0h24v24H0V0z" fill="none" />
+                        <path
+                            d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="button">
+                <button disabled></button>
+            </div>
+            <div class="button">
+                <button disabled></button>
+            </div>
+            <div class="button">
+                <button class="operator" id="divide">%</button>
+            </div>
+            <div class="button">
+                <button class="number">7</button>
+            </div>
+            <div class="button">
+                <button class="number">8</button>
+            </div>
+            <div class="button">
+                <button class="number">9</button>
+            </div>
+            <div class="button">
+                <button class="operator" id="multiply">x</button>
+            </div>
+            <div class="button">
+                <button class="number">4</button>
+            </div>
+            <div class="button">
+                <button class="number">5</button>
+            </div>
+            <div class="button">
+                <button class="number">6</button>
+            </div>
+            <div class="button">
+                <button class="operator" id="subtract">-</button>
+            </div>
+            <div class="button">
+                <button class="number">1</button>
+            </div>
+            <div class="button">
+                <button class="number">2</button>
+            </div>
+            <div class="button">
+                <button class="number">3</button>
+            </div>
+            <div class="button">
+                <button class="operator" id="add">+</button>
+            </div>
+            <div class="button">
+                <button id="clear">C</button>
+            </div>
+            <div class="button">
+                <button class="number">0</button>
+            </div>
+            <div class="button">
+                <button id="dot" disabled>.</button>
+            </div>
+            <div class="button">
+                <button class="operator" id="sum">=</button>
+            </div>
+        </div>
     </div>
 
 </body>

@@ -9,7 +9,7 @@ body {
 }
 
 .calculator {
-    width: 360px;
+    width: 320px;
     margin: auto;
     padding: 30px 20px 30px 20px;
     background-color: hsla(0, 0%, 41%, 0.5);
@@ -21,20 +21,35 @@ body {
     color: whitesmoke;
 }
 
-#display {
+.display-box {
     display: flex;
+    flex-direction: column;
     box-sizing: border-box;
-    width: 352px;
+    width: 312px;
     border: gray solid 1px;
     background: whitesmoke;
     border-radius: 6px;
     height: 100px;
     padding: 8px 22px 8px 8px;
-    justify-content: right;
-    align-items: center;
-    font-size: 3em;
     font-family: monospace;
     margin: 0 0 16px 4px;
+    justify-content: center;
+}
+
+#display {
+    display: flex;
+    justify-content: end;
+    font-size: 3em;
+    height: 50px;
+}
+
+#history {
+    display: flex;
+    justify-content: end;
+    /* color: #999999; */
+    font-size: 2em;
+    height: 50px;
+    opacity: 0.3;
 }
 
 .buttons {

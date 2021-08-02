@@ -5,80 +5,112 @@ const operators = document.querySelectorAll('.operator');
 const clear = document.querySelector('#clear');
 const power = document.querySelector('#power');
 const dot = document.querySelector('#dot');
+const sum = document.querySelector('#sum');
+const historyDisplay = document.querySelector('#history');
 
 
 // Memory variables
 let memory = [];
 let queue = [];
+let history = [];
+
 
 // Power switch
 power.addEventListener('click', () => {
-    display.classList.toggle('off')
+    display.classList.toggle('off');
+    historyDisplay.classList.toggle('off');
     numbers.forEach(number => number.toggleAttribute('disabled'));
     operators.forEach(number => number.toggleAttribute('disabled'));
     clear.toggleAttribute('disabled');
-    dot.toggleAttribute('disabled');
+    // dot.toggleAttribute('disabled');
 });
 
 
-    // Event-listeners
-    numbers.forEach(number => {
+// Number-buttons: 1, 2, 3, 4, 5, 6, 7, 8, 9, 0
+numbers.forEach(number => {
 
-        number.addEventListener('click', () => {
+    number.addEventListener('click', (e) => {
 
-            queue.push(number.textContent);
-            console.log(queue);
-            string = queue.join("");
-            display.textContent = string;
+        if (number.textContent === "0" && queue.length === 0) return
 
-        });
+        if (history.length === 0) historyDisplay.textContent = "";
+
+        queue.push(number.textContent);
+        string = queue.join("");
+        display.textContent = string;
+
+        console.log(queue);
     });
+});
 
-    operators.forEach(operator => {
+// Operator-buttons: +, -, *, /, =
+operators.forEach(operator => {
 
-        operator.addEventListener('click', () => {
+    operator.addEventListener('click', () => {
 
-            if (queue.length === 0) {
+        // Clear possible bugs
+        if (queue.length === 0) return console.log("Denied");
 
-            } else {
+        if (operator.id === 'sum' && memory.length < 2) return console.log("Denied");
 
-                // Empty queue to display new numbers
-                queue.length = 0;
+        console.log("Operator event start");
 
-                // Convert display content to Integer and save it to memory and add operator to memory as well.
-                number = parseInt(display.textContent);
-                memory.push(number);
-                memory.push(operator.id);
-                console.log(memory);
+        // Convert display value to Integer and push it to memory
+        memory.push(parseInt(display.textContent));
 
-                let sum = 0;
+        // Convert operator name to symbol
+        let op = convert(operator.id);
 
-                if (memory.length > 2) {
+        // Push values to history
+        history.push(display.textContent);
+        if (!(op === '=')) history.push(op);
 
-                    // Assign numbers and operator from memory with index numbers, display result on calculator display.
-                    sum = operate(memory[1], memory[0], memory[2]);
-                    display.textContent = sum;
+        // Push operator to memory when it's not sum operator
+        if (!(operator.id === 'sum')) memory.push(operator.id);
 
-                    // Add result to memory and clear memory from used items
+        // Display sum total
+        let sum = 0;
 
-                    memory.push(sum)
-                    memory.reverse();
+        if (memory.length > 2) {
 
-                    if (operator.id === 'sum') memory.length = 0;
-                    else memory.length = 2;
+            // Assign numbers and operator from memory with index numbers, display result on calculator display.
+            sum = operate(memory[1], memory[0], memory[2]);
+            display.textContent = +sum.toFixed(5);
+            historyDisplay.textContent = history.join(" ");
 
-                    console.log(memory);
+            // Add result to memory and reverse array for future calculations
+            memory.push(sum)
+            memory.reverse();
 
-                }
+            // Clear memory if sum is calculated
+            if (operator.id === 'sum') {
+
+                memory.length = 0;
+                history.length = 0;
             }
-        });
-    });
+            // Else continue
+            else {
 
-    clear.addEventListener('click', () => {
-        memory.length = 0;
+                memory.length = 2;
+            }
+        }
+
+        // Empty queue to display new numbers
         queue.length = 0;
-        display.textContent = 0;
-    })
+
+        console.log("End of operator event");
+
+    });
+});
+
+
+// Clear-button
+clear.addEventListener('click', () => {
+    memory.length = 0;
+    queue.length = 0;
+    display.textContent = 0;
+    historyDisplay.textContent = "";
+})
 
 
 // Calculator operators
@@ -98,6 +130,8 @@ function divide(a, b) {
     return a / b;
 }
 
+
+// o = operator, a = first number, b = second number
 const operate = (o, a, b) => {
 
     switch (o) {
@@ -112,7 +146,28 @@ const operate = (o, a, b) => {
             return divide(a, b);
 
         default:
-            console.log("Something went wrong");
+            console.log("(Operate) something went wrong");
+            break;
+    }
+}
+
+
+// Convert operators to symbols
+function convert(key) {
+    switch (key) {
+        case "add":
+            return "+";
+        case "subtract":
+            return "-";
+        case "multiply":
+            return "*";
+        case "divide":
+            return "/";
+        case "sum":
+            return "=";
+
+        default:
+            console.log("(Convert) something went wrong");
             break;
     }
 }
